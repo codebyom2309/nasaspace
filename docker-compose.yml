@@ -1,0 +1,14 @@
+# Mission Architect - Team Turbobits
+# Production Docker Compose configuration
+services:
+  game:
+    build: .
+    container_name: mission-architect
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data          # hall of fame survives rebuilds
+    ports:
+      - "8600:8600"
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
